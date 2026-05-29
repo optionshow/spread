@@ -25,7 +25,23 @@ interface RiskChartsProps {
 }
 
 export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strategy }) => {
-  const [customCapital, setCustomCapital] = useState<number>(250000);
+  const [customCapital, setCustomCapital] = useState<number>(() => {
+    try {
+      const saved = localStorage.getItem("opt_spread_customCapital");
+      return saved ? parseInt(saved, 10) : 250000;
+    } catch (e) {
+      console.error("Failed to load custom capital from localStorage:", e);
+      return 250000;
+    }
+  });
+
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("opt_spread_customCapital", customCapital.toString());
+    } catch (e) {
+      console.error("Failed to save custom capital to localStorage:", e);
+    }
+  }, [customCapital]);
 
   const presets = [100000, 250000, 500000, 1000000];
 

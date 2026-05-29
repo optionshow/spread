@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Header, StrategyGuide } from "./components/Header";
 import { ControlPanel } from "./components/ControlPanel";
 import { ResultSection } from "./components/ResultSection";
@@ -12,15 +12,53 @@ import {
 } from "lucide-react";
 
 export default function App() {
-  // Main selected parameters
-  const [params, setParams] = useState<SpreadParams>({
-    strikeDifference: 100, // default 100
-    premium: 25,           // default 25
-    targetReturnRate: 1.5, // default 1.5%
+  // Main selected parameters loaded from localStorage if available
+  const [params, setParams] = useState<SpreadParams>(() => {
+    try {
+      const saved = localStorage.getItem("opt_spread_params");
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error("Failed to load params from localStorage:", e);
+    }
+    return {
+      strikeDifference: 100, // default 100
+      premium: 25,           // default 25
+      targetReturnRate: 1.5, // default 1.5%
+    };
   });
 
-  // Strategy direction (bull put spread vs bear call spread)
-  const [strategy, setStrategy] = useState<"bull" | "bear">("bull");
+  // Strategy direction loaded from localStorage if available
+  const [strategy, setStrategy] = useState<"bull" | "bear">(() => {
+    try {
+      const saved = localStorage.getItem("opt_spread_strategy");
+      if (saved === "bull" || saved === "bear") {
+        return saved;
+      }
+    } catch (e) {
+      console.error("Failed to load strategy from localStorage:", e);
+    }
+    return "bull";
+  });
+
+  // Save params to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem("opt_spread_params", JSON.stringify(params));
+    } catch (e) {
+      console.error("Failed to save params to localStorage:", e);
+    }
+  }, [params]);
+
+  // Save strategy to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem("opt_spread_strategy", strategy);
+    } catch (e) {
+      console.error("Failed to save strategy to localStorage:", e);
+    }
+  }, [strategy]);
 
   // Active calculations
   const results = useMemo(() => {
