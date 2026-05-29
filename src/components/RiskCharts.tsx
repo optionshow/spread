@@ -75,7 +75,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
 
   // Real Integer math
   const integerGroups = results.capitalCost > 0 
-    ? Math.floor(customCapital / results.capitalCost) 
+    ? Math.ceil(customCapital / results.capitalCost) 
     : 0;
   const integerProfit = integerGroups * results.profitAmount;
   const integerProfitRate = customCapital > 0 
@@ -87,9 +87,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
     ? (integerMaxLoss / customCapital) * 100 
     : 0;
 
-  const customAvailableBalancePercent = customCapital > 0 
-    ? ((customCapital - integerGroups * results.spreadCost) / customCapital) * 100 
-    : 0;
+  const customAvailableBalancePercent = results.availableBalancePercent * 100;
 
   const formatTWD = (value: number) => {
     return `NT$ ${Math.round(value).toLocaleString("zh-TW")}`;
