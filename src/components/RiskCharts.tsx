@@ -264,16 +264,16 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
       </div>
 
       {/* Custom Capital Section under Chart 3 */}
-      <div id="custom-capital-assess-card" className="bento-card p-6 lg:col-span-12 bg-slate-900 border border-slate-800 shadow-xl space-y-6 relative overflow-hidden">
+      <div id="custom-capital-assess-card" className="bento-card p-6 lg:col-span-12 bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 shadow-sm space-y-6 relative overflow-hidden rounded-2xl">
         <div className="absolute right-0 top-0 translate-x-12 -translate-y-12 w-48 h-48 bg-teal-500/5 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200/80 pb-4">
           <div className="space-y-1">
-            <h4 className="text-xs font-bold uppercase text-slate-300 tracking-widest flex items-center gap-2">
-              <Coins className="w-4.5 h-4.5 text-teal-400" />
+            <h4 className="text-xs font-bold uppercase text-slate-800 tracking-widest flex items-center gap-2">
+              <Coins className="w-4.5 h-4.5 text-teal-600" />
               自定義投入資金成本模擬 (Portfolio Scale Calculator)
             </h4>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               輸入自定義的期權配置總資金，自動試算對應此價差合約下的預估獲利與最大虧損。
             </p>
           </div>
@@ -286,8 +286,8 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
                 onClick={() => setCustomCapital(val)}
                 className={`px-2.5 py-1 rounded text-xs transition duration-150 ${
                   customCapital === val
-                    ? "bg-teal-500 text-slate-950 font-bold"
-                    : "bg-slate-950 text-slate-400 hover:text-slate-200 border border-slate-800"
+                    ? "bg-teal-600 text-white font-bold"
+                    : "bg-slate-200/50 text-slate-700 hover:text-slate-900 border border-slate-300 hover:bg-slate-200"
                 }`}
               >
                 {val / 10000}萬
@@ -301,11 +301,11 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
           
           <div className="md:col-span-4 space-y-3.5">
             <div className="space-y-2">
-              <label htmlFor="custom-capital-field" className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+              <label htmlFor="custom-capital-field" className="text-xs font-bold text-slate-600 uppercase tracking-wider block">
                 自定義投入資金成本 (TWD)
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-xs">NT$</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs mt-0.5">NT$</span>
                 <input
                   id="custom-capital-field"
                   type="text"
@@ -314,23 +314,23 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
                     const cleaned = e.target.value.replace(/[^0-9]/g, "");
                     setCustomCapital(cleaned ? parseInt(cleaned, 10) : 0);
                   }}
-                  className="bg-slate-950 border border-slate-800 hover:border-slate-700 focus:border-teal-500 rounded-xl text-teal-400 font-mono font-bold text-lg py-2.5 pl-11 pr-4 w-full focus:outline-none transition-colors"
+                  className="bg-white border border-slate-300 focus:border-indigo-500 rounded-xl text-slate-900 font-mono font-bold text-lg py-2.5 pl-11 pr-4 w-full focus:outline-none focus:ring-2 focus:ring-indigo-100 transition-all shadow-sm"
                   placeholder="輸入資金"
                 />
               </div>
             </div>
 
             {/* Display Available Balance % below Custom Capital */}
-            <div className="bg-slate-950 border border-slate-800/80 px-4 py-3 rounded-xl flex items-center justify-between shadow-inner">
-              <span className="text-xs text-slate-400 font-medium">保留可用餘額 %</span>
+            <div className="bg-white border border-slate-200 px-4 py-3 rounded-xl flex items-center justify-between shadow-inner">
+              <span className="text-xs text-slate-600 font-medium">保留可用餘額 %</span>
               <span className={`font-mono font-extrabold text-sm ${
-                customAvailableBalancePercent < 0 ? "text-red-400" : "text-emerald-400"
+                customAvailableBalancePercent < 0 ? "text-rose-600" : "text-emerald-600"
               }`}>
                 {Math.round(customAvailableBalancePercent)}%
               </span>
             </div>
 
-            <p className="text-[10px] text-slate-500 leading-normal">
+            <p className="text-[10px] text-slate-400 leading-normal">
               * 分母獲利率％與虧損率％均以此自訂投入金額計算。
             </p>
           </div>
@@ -338,36 +338,36 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
           <div className="md:col-span-8">
             
             {/* Integer Mode Result (Real Trading) */}
-            <div className="bg-slate-950/40 border border-emerald-500/10 p-5 rounded-xl space-y-4">
-              <div className="flex items-center justify-between border-b border-slate-800/60 pb-3">
-                <span className="text-[11px] font-bold text-slate-300 uppercase tracking-widest">
+            <div className="bg-white border border-slate-200 p-5 rounded-xl space-y-4 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                <span className="text-[11px] font-bold text-slate-700 uppercase tracking-widest">
                   實際整組承作 (Integer Contract Model)
                 </span>
-                <span className="text-xs text-emerald-400 font-mono font-bold">
+                <span className="text-xs text-emerald-600 font-mono font-bold">
                   可承作: {integerGroups} 組
                 </span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-                <div className="flex items-center justify-between bg-slate-950/60 p-3 rounded-lg border border-slate-900">
-                  <span className="text-xs text-slate-400">實際成交獲利</span>
+                <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <span className="text-xs text-slate-500 font-bold">實際成交獲利</span>
                   <div className="text-right">
-                    <span className="text-sm font-bold text-emerald-400 block font-mono">
+                    <span className="text-sm font-bold text-emerald-600 block font-mono">
                       {formatTWD(integerProfit)}
                     </span>
-                    <span className="text-[10px] text-slate-500 block">
+                    <span className="text-[10px] text-slate-400 block">
                       (實際獲利率 {formatPercentVal(integerProfitRate)})
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between bg-slate-950/60 p-3 rounded-lg border border-slate-900">
-                  <span className="text-xs text-slate-400">實際最大虧損</span>
+                <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <span className="text-xs text-slate-500 font-bold">實際最大虧損</span>
                   <div className="text-right">
-                    <span className="text-sm font-bold text-rose-400 block font-mono">
+                    <span className="text-sm font-bold text-rose-600 block font-mono">
                       {formatTWD(integerMaxLoss)}
                     </span>
-                    <span className="text-[10px] text-slate-500 block">
+                    <span className="text-[10px] text-slate-400 block">
                       (實際虧損率 {formatPercentVal(integerMaxLossRate)})
                     </span>
                   </div>
