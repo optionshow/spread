@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
               <h1 className="text-lg font-bold text-slate-50 font-display flex items-center gap-1.5 leading-none">
                 台指選擇權價差評估與風控系統
                 <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono font-medium">
-                  v1.2.0
+                  v1.2.2
                 </span>
               </h1>
               <p className="text-xs text-slate-400 mt-1">
