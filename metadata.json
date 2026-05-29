@@ -1,0 +1,6 @@
+{
+  "name": "台指選擇權價差評估與風控系統",
+  "description": "提供台指選擇權複式單的價差報酬率預估、不同停損比例試算、資金成本、保留可用餘額，以及保利降部位等進階風控，並整合互動式線圖分析。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
