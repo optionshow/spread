@@ -31,8 +31,8 @@ export function calculateSpreadMetrics(params: SpreadParams): CalculationResult 
   // 6. 建議保利降部位％＝獲利率％ * 0.75
   const suggestedReducePositionPercent = targetReturnRate * 0.75;
 
-  // 7. 保留最大點數＝價差成交價 * 0.2
-  const maxRetainedPoints = premium * 0.2;
+  // 7. 保留最大點數＝價差成交價 * 0.25
+  const maxRetainedPoints = premium * 0.25;
 
   // 8. 最大虧損風險＝（複式單履約價差-價差成交價）* ＄50
   const maxLossRisk = (strikeDifference - premium) * 50;

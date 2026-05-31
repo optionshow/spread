@@ -243,7 +243,7 @@ export const ResultSection: React.FC<ResultSectionProps> = ({ params, results })
                   利潤保護最大保留點數值
                 </span>
                 <span className="text-[10px] text-slate-500 font-mono">
-                  公式： 成交價 {params.premium} * 0.2
+                  公式： 成交價 {params.premium} * 0.25
                 </span>
               </div>
               <div className="text-right">
