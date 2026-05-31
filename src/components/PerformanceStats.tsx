@@ -87,7 +87,7 @@ export const PerformanceStats: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
-  const csvUrl = "https://docs.google.com/spreadsheets/d/1GjsqJI7ivGiT3xZQ6VJ2Sy7rQ42ePfC1I6NKiNMRxCU/export?format=csv&gid=0";
+  const csvUrl = "/api/performance-stats";
 
   useEffect(() => {
     let active = true;
