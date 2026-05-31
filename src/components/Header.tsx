@@ -13,48 +13,44 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/20">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className={`text-lg font-bold font-display flex items-center gap-1.5 leading-none ${isLight ? 'text-slate-900' : 'text-slate-50'}`}>
-                  台指選擇權價差評估與風控系統
-                  <span className={`text-[10px] borer px-2 py-0.5 rounded font-mono font-medium ${isLight ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
-                    v1.2.2
-                  </span>
-                </h1>
-                <p className={`text-xs mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
-                  Taiex Options Spread Expected Return & Financial Risk Controller
-                </p>
-              </div>
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-slate-950 shadow-md shadow-emerald-500/20">
+              <ShieldCheck className="w-6 h-6" />
             </div>
-
-            {/* Performance Statistics View toggle button right next to title */}
-            <button
-              onClick={() => setActiveTab(activeTab === "main" ? "stats" : "main")}
-              className={`sm:ml-2 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm self-start sm:self-center ${
-                activeTab === "stats"
-                  ? "bg-teal-500 text-slate-950 border-teal-400 font-bold shadow-teal-500/15 hover:bg-teal-400 hover:border-teal-300"
-                  : "bg-slate-900 text-slate-150 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
-              }`}
-            >
-              {activeTab === "stats" ? (
-                <>
-                  <Calculator className="w-4 h-4 text-slate-950" />
-                  返回試算評估
-                </>
-              ) : (
-                <>
-                  <TrendingUp className="w-4 h-4 text-teal-400" />
-                  績效統計
-                </>
-              )}
-            </button>
+            <div>
+              <h1 className={`text-lg font-bold font-display flex items-center gap-1.5 leading-none ${isLight ? 'text-slate-900' : 'text-slate-50'}`}>
+                台指選擇權價差評估與風控系統
+                <span className={`text-[10px] borer px-2 py-0.5 rounded font-mono font-medium ${isLight ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
+                  v1.2.2
+                </span>
+              </h1>
+              <p className={`text-xs mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>
+                Taiex Options Spread Expected Return & Financial Risk Controller
+              </p>
+            </div>
           </div>
 
-          {/* Quick Stats/Metadata Badge removed as requested */}
+          {/* Performance Statistics View toggle button aligned to the far right */}
+          <button
+            onClick={() => setActiveTab(activeTab === "main" ? "stats" : "main")}
+            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm self-start sm:self-center ${
+              activeTab === "stats"
+                ? "bg-teal-500 text-slate-950 border-teal-400 font-bold shadow-teal-500/15 hover:bg-teal-400 hover:border-teal-300"
+                : "bg-slate-900 text-slate-150 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
+            }`}
+          >
+            {activeTab === "stats" ? (
+              <>
+                <Calculator className="w-4 h-4 text-slate-950" />
+                返回試算評估
+              </>
+            ) : (
+              <>
+                <TrendingUp className="w-4 h-4 text-teal-400" />
+                績效統計
+              </>
+            )}
+          </button>
 
         </div>
       </div>
