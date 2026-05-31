@@ -97,13 +97,13 @@ export const PerformanceStats: React.FC = () => {
       try {
         const response = await fetch(csvUrl);
         if (!response.ok) {
-          throw new Error("無法從 Google 雲端硬碟讀取試算表資料。請檢查網路連接或稍後再試。");
+          throw new Error("無法從數據服務器讀取歷史資料。請檢查網路連接或稍後再試。");
         }
         const csvText = await response.text();
         const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
 
         if (lines.length < 2) {
-          throw new Error("試算表格式不正確或內容為空。");
+          throw new Error("歷史資料格式不正確或內容為空。");
         }
 
         // Parse Row 1 (Header 1: Metadata Summary)
@@ -251,7 +251,7 @@ export const PerformanceStats: React.FC = () => {
             台指選擇權價差交易績效統計
           </h2>
           <p className="text-sm text-slate-500 mt-1.5 leading-relaxed">
-            此頁面即時鏈結 Google Sheets 工作表數據，讀取交易記錄以自動生成戰略績效指標、累積報酬曲線與勝率分析。
+            此頁面即時鏈結專屬數據接口，讀取交易記錄以自動生成戰略績效指標、累積報酬曲線與勝率分析。
           </p>
         </div>
       </div>
@@ -262,7 +262,7 @@ export const PerformanceStats: React.FC = () => {
             <span className="absolute animate-ping w-8 h-8 rounded-full bg-rose-500/20"></span>
             <RefreshCw className="w-6 h-6 text-rose-500 animate-spin" />
           </div>
-          <p className="text-sm text-slate-500 font-medium animate-pulse">正在載入試算表歷史績效數據中...</p>
+          <p className="text-sm text-slate-500 font-medium animate-pulse">正在載入歷史績效數據中...</p>
         </div>
       )}
 
@@ -632,7 +632,7 @@ export const PerformanceStats: React.FC = () => {
 
             {/* Total rows counter */}
             <div className="flex items-center justify-between text-xs text-slate-500 px-1 pt-1">
-              <span>* 單週損益 % 與 累積報酬 % 均以試算表之 A1 初始配置資金分母為計算基礎。</span>
+              <span>* 單週損益 % 與 累積報酬 % 均以初始配置資金為計算基礎。</span>
               <span className="font-mono font-bold uppercase">
                 篩選出: {filteredRecords.length} / {records.length} 筆資料
               </span>
