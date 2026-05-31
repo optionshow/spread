@@ -232,9 +232,9 @@ export const PerformanceStats: React.FC = () => {
 
   // Currency formats
   const formatTWD = (value: number) => {
-    if (value === 0) return "NT$ 0";
+    if (value === 0) return "$ 0";
     const sign = value < 0 ? "-" : "";
-    return `${sign}NT$ ${Math.abs(Math.round(value)).toLocaleString("zh-TW")}`;
+    return `${sign}$ ${Math.abs(Math.round(value)).toLocaleString("zh-TW")}`;
   };
 
   const formatPercent = (val: number) => {

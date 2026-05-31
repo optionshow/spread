@@ -18,7 +18,7 @@ interface ResultSectionProps {
 
 export const ResultSection: React.FC<ResultSectionProps> = ({ params, results }) => {
   const formatTWD = (value: number) => {
-    return `NT$ ${Math.round(value).toLocaleString("zh-TW")}`;
+    return `$ ${Math.round(value).toLocaleString("zh-TW")}`;
   };
 
   const formatPercentVal = (val: number): string => {
@@ -71,7 +71,7 @@ export const ResultSection: React.FC<ResultSectionProps> = ({ params, results })
             <div className="group relative ml-2">
               <HelpCircle className="w-3.5 h-3.5 cursor-help text-slate-500 hover:text-slate-400" />
               <div className="absolute right-0 bottom-6 w-52 bg-slate-950 border border-slate-800 text-slate-300 p-2.5 rounded-lg text-[10px] invisible group-hover:visible z-50 leading-normal pointer-events-none">
-                以加權指數每點 NT$50 為基本契約價值。
+                以加權指數每點 $50 為基本契約價值。
               </div>
             </div>
           </div>

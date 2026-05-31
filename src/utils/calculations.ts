@@ -80,7 +80,7 @@ export function calculateSpreadMetrics(params: SpreadParams): CalculationResult 
  */
 export interface PayoffDataPoint {
   indexDiff: number; // 指數相對變動點數
-  payoff: number;    // 單組損益 (NTD)
+  payoff: number;    // 單組損益 (TWD)
   label: string;     // 點數標籤
   isCurrent: boolean;
   isStopLossPoint?: boolean;

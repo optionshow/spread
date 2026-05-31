@@ -70,7 +70,7 @@ export default function App() {
 
   // Custom currency formatter
   const formatTWD = (value: number) => {
-    return `NT$ ${Math.round(value).toLocaleString("zh-TW")}`;
+    return `$ ${Math.round(value).toLocaleString("zh-TW")}`;
   };
 
   const formatPercentVal = (val: number): string => {

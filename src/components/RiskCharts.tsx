@@ -43,7 +43,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
     }
   }, [customCapital]);
 
-  const presets = [100000, 250000, 500000, 1000000];
+  const presets = [100000, 250000, 300000, 400000, 500000, 1000000];
 
   const payoffData = useMemo(() => {
     return generatePayoffData(params.strikeDifference, params.premium, strategy);
@@ -98,6 +98,8 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
     ? (integerProfit / customCapital) * 100 
     : 0;
 
+  const integerProtectedProfit = integerProfit * 0.75;
+
   const integerMaxLoss = integerGroups * results.maxLossRisk;
   const integerMaxLossRate = customCapital > 0 
     ? (integerMaxLoss / customCapital) * 100 
@@ -106,7 +108,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
   const customAvailableBalancePercent = results.availableBalancePercent * 100;
 
   const formatTWD = (value: number) => {
-    return `NT$ ${Math.round(value).toLocaleString("zh-TW")}`;
+    return `$ ${Math.round(value).toLocaleString("zh-TW")}`;
   };
 
   const formatPercentVal = (val: number): string => {
@@ -321,7 +323,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
                 自定義投入資金成本 (TWD)
               </label>
               <div className="relative">
-                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs mt-0.5">NT$</span>
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 font-bold text-xs mt-0.5">$</span>
                 <input
                   id="custom-capital-field"
                   type="text"
@@ -357,34 +359,51 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
             <div className="bg-white border border-slate-200 p-5 rounded-xl space-y-4 shadow-sm">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <span className="text-[11px] font-bold text-slate-700 uppercase tracking-widest">
-                  實際整組承作 (Integer Contract Model)
+                  整組承作 (Integer Contract Model)
                 </span>
                 <span className="text-xs text-emerald-600 font-mono font-bold">
                   可承作: {integerGroups} 組
                 </span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
                 <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-100">
-                  <span className="text-xs text-slate-500 font-bold">實際成交獲利</span>
+                  <span className="text-xs text-slate-500 font-bold">成交獲利</span>
                   <div className="text-right">
                     <span className="text-sm font-bold text-emerald-600 block font-mono">
                       {formatTWD(integerProfit)}
                     </span>
                     <span className="text-[10px] text-slate-400 block">
-                      (實際獲利率 {formatPercentVal(integerProfitRate)})
+                      (獲利率 {formatPercentVal(integerProfitRate)})
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-100">
-                  <span className="text-xs text-slate-500 font-bold">實際最大虧損</span>
+                  <div className="space-y-0.5 text-left">
+                    <span className="text-xs text-slate-500 font-bold block">保利獲利</span>
+                    <span className="text-[10px] text-slate-400 font-mono block">
+                      = 成交獲利 * 0.75
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm font-bold text-amber-600 block font-mono">
+                      {formatTWD(integerProtectedProfit)}
+                    </span>
+                    <span className="text-[10px] text-slate-400 block">
+                      (保利率 {formatPercentVal(integerProfitRate * 0.75)})
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <span className="text-xs text-slate-500 font-bold">最大虧損</span>
                   <div className="text-right">
                     <span className="text-sm font-bold text-rose-600 block font-mono">
                       {formatTWD(integerMaxLoss)}
                     </span>
                     <span className="text-[10px] text-slate-400 block">
-                      (實際虧損率 {formatPercentVal(integerMaxLossRate)})
+                      (虧損率 {formatPercentVal(integerMaxLossRate)})
                     </span>
                   </div>
                 </div>
