@@ -225,7 +225,7 @@ export const ResultSection: React.FC<ResultSectionProps> = ({ params, results })
                   建議保利降部位 %
                 </span>
                 <span className="text-[10px] text-slate-500 font-mono">
-                  公式： 目標 {formatPercentVal(params.targetReturnRate)} * 0.75
+                  公式： 目標 {formatPercentVal(params.targetReturnRate)} * 0.85
                 </span>
               </div>
               <div className="text-right">
@@ -243,7 +243,7 @@ export const ResultSection: React.FC<ResultSectionProps> = ({ params, results })
                   利潤保護最大保留點數值
                 </span>
                 <span className="text-[10px] text-slate-500 font-mono">
-                  公式： 成交價 {params.premium} * 0.25
+                  公式： 成交價 {params.premium} * 0.3
                 </span>
               </div>
               <div className="text-right">

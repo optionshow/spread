@@ -98,7 +98,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
     ? (integerProfit / customCapital) * 100 
     : 0;
 
-  const integerProtectedProfit = integerProfit * 0.75;
+  const integerProtectedProfit = integerProfit * 0.85;
 
   const integerMaxLoss = integerGroups * results.maxLossRisk;
   const integerMaxLossRate = customCapital > 0 
@@ -383,7 +383,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
                   <div className="space-y-0.5 text-left">
                     <span className="text-xs text-slate-500 font-bold block">保利獲利</span>
                     <span className="text-[10px] text-slate-400 font-mono block">
-                      = 成交獲利 * 0.75
+                      = 成交獲利 * 0.85
                     </span>
                   </div>
                   <div className="text-right">
@@ -391,7 +391,7 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
                       {formatTWD(integerProtectedProfit)}
                     </span>
                     <span className="text-[10px] text-slate-400 block">
-                      (保利率 {formatPercentVal(integerProfitRate * 0.75)})
+                      (保利率 {formatPercentVal(integerProfitRate * 0.85)})
                     </span>
                   </div>
                 </div>

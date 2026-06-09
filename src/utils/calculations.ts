@@ -28,11 +28,11 @@ export function calculateSpreadMetrics(params: SpreadParams): CalculationResult 
   const stopLoss250 = Math.min(strikeDifference, premium * 3.5);
   const stopLoss300 = Math.min(strikeDifference, premium * 4);
 
-  // 6. 建議保利降部位％＝獲利率％ * 0.75
-  const suggestedReducePositionPercent = targetReturnRate * 0.75;
+  // 6. 建議保利降部位％＝獲利率％ * 0.85
+  const suggestedReducePositionPercent = targetReturnRate * 0.85;
 
-  // 7. 保留最大點數＝價差成交價 * 0.25
-  const maxRetainedPoints = premium * 0.25;
+  // 7. 保留最大點數＝價差成交價 * 0.3
+  const maxRetainedPoints = premium * 0.3;
 
   // 8. 最大虧損風險＝（複式單履約價差-價差成交價）* ＄50
   const maxLossRisk = (strikeDifference - premium) * 50;

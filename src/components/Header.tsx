@@ -89,7 +89,7 @@ export const StrategyGuide: React.FC = () => {
           <div className="space-y-1">
             <span className="text-[10px] text-slate-500 block uppercase font-mono tracking-wider">2. 保利點數</span>
             <p className="text-xs font-semibold text-slate-200">
-              保留最大點數額 ({`0.2 * 成交價`}) 是為了在回檔時保護既得利潤。
+              保留最大點數額 ({`0.3 * 成交價`}) 是為了在回檔時保護既得利潤。
             </p>
           </div>
           <div className="space-y-1">

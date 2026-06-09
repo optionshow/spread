@@ -17,8 +17,8 @@ export interface CalculationResult {
   stopLoss250: number; // 價差成交價 * 3.5
   stopLoss300: number; // 價差成交價 * 4
 
-  suggestedReducePositionPercent: number; // 建議保利降部位% = 獲利率% * 0.75
-  maxRetainedPoints: number;              // 保留最大點數 = 價差成交價 * 0.2
+  suggestedReducePositionPercent: number; // 建議保利降部位% = 獲利率% * 0.85
+  maxRetainedPoints: number;              // 保留最大點數 = 價差成交價 * 0.3
   maxLossRisk: number;                    // 最大虧損風險 = 價差成本
   maxLossPercent: number;                 // 最大虧損% = (複式單履約價差 - 價差成交價) / 複式單履約價差
 }
