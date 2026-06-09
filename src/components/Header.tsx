@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
               <h1 className={`text-lg font-bold font-display flex items-center gap-1.5 leading-none ${isLight ? 'text-slate-900' : 'text-slate-50'}`}>
                 台指選擇權價差評估與風控系統
                 <span className={`text-[10px] borer px-2 py-0.5 rounded font-mono font-medium ${isLight ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'}`}>
-                  v1.2.2
+                  v1.2.3
                 </span>
               </h1>
               <p className={`text-xs mt-1 ${isLight ? 'text-slate-500' : 'text-slate-400'}`}>

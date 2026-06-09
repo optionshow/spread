@@ -254,20 +254,24 @@ export const PerformanceStats: React.FC = () => {
     const winRate = (winWeeks / totalWeeks) * 100;
 
     let maxWeeklyProfit = -Infinity;
-    let maxWeeklyLoss = Infinity;
-    let maxWeeklyProfitWeek = "";
-    let maxWeeklyLossWeek = "";
+    let maxWeeklyLoss = 0;
+    let maxWeeklyProfitWeek = "-";
+    let maxWeeklyLossWeek = "-";
 
     records.forEach(r => {
       if (r.weeklyPnL > maxWeeklyProfit) {
         maxWeeklyProfit = r.weeklyPnL;
         maxWeeklyProfitWeek = r.week;
       }
-      if (r.weeklyPnL < maxWeeklyLoss) {
+      if (r.weeklyPnL < 0 && r.weeklyPnL < maxWeeklyLoss) {
         maxWeeklyLoss = r.weeklyPnL;
         maxWeeklyLossWeek = r.week;
       }
     });
+
+    if (maxWeeklyProfit === -Infinity) {
+      maxWeeklyProfit = 0;
+    }
 
     const finalRecord = records[records.length - 1];
     const totalAccumProfit = finalRecord ? finalRecord.cumulativePnL : 0;
@@ -410,7 +414,7 @@ export const PerformanceStats: React.FC = () => {
               </div>
               <div className="space-y-0.5">
                 <span className="text-xl font-mono font-extrabold text-slate-900 block">
-                  {stats.winRate.toFixed(1)}%
+                  {Math.round(stats.winRate)}%
                 </span>
                 <span className="text-[10px] text-slate-500 block font-medium">
                   共 {stats.totalWeeks} 交易週 | {stats.winWeeks}勝 {stats.lossWeeks}敗 {stats.flatWeeks}平
