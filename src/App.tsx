@@ -5,6 +5,7 @@ import { ResultSection } from "./components/ResultSection";
 import { RiskCharts } from "./components/RiskCharts";
 import { PerformanceStats } from "./components/PerformanceStats";
 import { InterfaceExplanation } from "./components/InterfaceExplanation";
+import { MindmapView } from "./components/MindmapView";
 import { calculateSpreadMetrics } from "./utils/calculations";
 import { SpreadParams } from "./types";
 import { 
@@ -90,6 +91,10 @@ export default function App() {
 
   if (currentView === "guide") {
     return <InterfaceExplanation />;
+  }
+
+  if (currentView === "mindmap") {
+    return <MindmapView />;
   }
 
   return (

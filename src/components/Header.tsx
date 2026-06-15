@@ -1,5 +1,5 @@
 import React from "react";
-import { ShieldCheck, TrendingUp, HelpCircle, BookOpen, Calculator } from "lucide-react";
+import { ShieldCheck, TrendingUp, HelpCircle, BookOpen, Calculator, Network } from "lucide-react";
 
 interface HeaderProps {
   activeTab: "main" | "stats";
@@ -44,6 +44,20 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             >
               <HelpCircle className="w-4 h-4 text-sky-400" />
               介面解說
+            </button>
+
+            <button
+              onClick={() => {
+                window.open(`${window.location.origin}${window.location.pathname}?page=mindmap`, "_blank");
+              }}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                activeTab === "stats"
+                  ? "bg-slate-100 text-slate-800 border-slate-200 hover:bg-slate-200"
+                  : "bg-slate-900 text-slate-100 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
+              }`}
+            >
+              <Network className="w-4 h-4 text-emerald-400" />
+              心智圖
             </button>
 
             <button
