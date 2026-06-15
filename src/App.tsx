@@ -27,7 +27,7 @@ export default function App() {
     }
     return {
       strikeDifference: 100, // default 100
-      premium: 25,           // default 25
+      premium: 20,           // default 20 (20% of 100)
       targetReturnRate: 1.5, // default 1.5%
     };
   });

@@ -19,7 +19,7 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   const targetReturnOptions = [1, 1.5, 2, 2.5, 3, 3.5, 4];
 
   const handleStrikeDiffChange = (diff: number) => {
-    const newPremium = Math.min(params.premium, diff);
+    const newPremium = Math.round(diff * 0.2);
     onChange({
       ...params,
       strikeDifference: diff,
