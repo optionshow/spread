@@ -30,27 +30,43 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             </div>
           </div>
 
-          {/* Performance Statistics View toggle button aligned to the far right */}
-          <button
-            onClick={() => setActiveTab(activeTab === "main" ? "stats" : "main")}
-            className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm self-start sm:self-center ${
-              activeTab === "stats"
-                ? "bg-teal-500 text-slate-950 border-teal-400 font-bold shadow-teal-500/15 hover:bg-teal-400 hover:border-teal-300"
-                : "bg-slate-900 text-slate-150 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
-            }`}
-          >
-            {activeTab === "stats" ? (
-              <>
-                <Calculator className="w-4 h-4 text-slate-950" />
-                返回試算評估
-              </>
-            ) : (
-              <>
-                <TrendingUp className="w-4 h-4 text-teal-400" />
-                績效統計
-              </>
-            )}
-          </button>
+          {/* Buttons container aligned to the right */}
+          <div className="flex items-center gap-2.5 self-start sm:self-center">
+            <button
+              onClick={() => {
+                window.open(`${window.location.origin}${window.location.pathname}?page=guide`, "_blank");
+              }}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                activeTab === "stats"
+                  ? "bg-slate-100 text-slate-800 border-slate-200 hover:bg-slate-200"
+                  : "bg-slate-900 text-slate-100 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
+              }`}
+            >
+              <HelpCircle className="w-4 h-4 text-sky-400" />
+              介面解說
+            </button>
+
+            <button
+              onClick={() => setActiveTab(activeTab === "main" ? "stats" : "main")}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                activeTab === "stats"
+                  ? "bg-teal-500 text-slate-950 border-teal-400 font-bold shadow-teal-500/15 hover:bg-teal-400 hover:border-teal-300"
+                  : "bg-slate-900 text-slate-150 border-slate-800 hover:bg-slate-850 hover:border-slate-700"
+              }`}
+            >
+              {activeTab === "stats" ? (
+                <>
+                  <Calculator className="w-4 h-4 text-slate-950" />
+                  返回試算評估
+                </>
+              ) : (
+                <>
+                  <TrendingUp className="w-4 h-4 text-teal-400" />
+                  績效統計
+                </>
+              )}
+            </button>
+          </div>
 
         </div>
       </div>

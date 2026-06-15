@@ -4,6 +4,7 @@ import { ControlPanel } from "./components/ControlPanel";
 import { ResultSection } from "./components/ResultSection";
 import { RiskCharts } from "./components/RiskCharts";
 import { PerformanceStats } from "./components/PerformanceStats";
+import { InterfaceExplanation } from "./components/InterfaceExplanation";
 import { calculateSpreadMetrics } from "./utils/calculations";
 import { SpreadParams } from "./types";
 import { 
@@ -14,6 +15,12 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<"main" | "stats">("main");
+
+  // Read route query parameter to trigger sub-view
+  const [currentView] = useState(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("page") || "app";
+  });
 
   // Main selected parameters loaded from localStorage if available
   const [params, setParams] = useState<SpreadParams>(() => {
@@ -80,6 +87,10 @@ export default function App() {
     }
     return `${rounded.toFixed(1)}%`;
   };
+
+  if (currentView === "guide") {
+    return <InterfaceExplanation />;
+  }
 
   return (
     <div className={`min-h-screen ${activeTab === 'stats' ? 'bg-white text-slate-800' : 'bg-[#0f172a] text-slate-200'} font-sans antialiased flex flex-col selection:bg-teal-500/30 selection:text-teal-200 transition-colors duration-200`}>
