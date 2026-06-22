@@ -98,7 +98,6 @@ export const PerformanceStats: React.FC = () => {
   const [summary, setSummary] = useState<PerformanceSummary | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
   const [refreshTrigger, setRefreshTrigger] = useState<number>(0);
 
   const csvUrl = "/api/performance-stats";
@@ -292,13 +291,10 @@ export const PerformanceStats: React.FC = () => {
     };
   }, [records]);
 
-  // Handle Search Filter for dynamic table Search
+  // Display all weeks with the latest/newest first (descending by id)
   const filteredRecords = useMemo(() => {
-    return records.filter(r => 
-      r.week.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      r.id.toString().includes(searchQuery)
-    );
-  }, [records, searchQuery]);
+    return [...records].sort((a, b) => b.id - a.id);
+  }, [records]);
 
   // Currency formats
   const formatTWD = (value: number) => {
@@ -613,30 +609,11 @@ export const PerformanceStats: React.FC = () => {
           {/* Interactive Detailed Database Table - Double Font Size & White background */}
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm space-y-4 p-5">
             
-            {/* Search Input and Status summary */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-4">
-              <div className="space-y-1">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-1.5 font-display">
-                  歷史全紀錄明細數據
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-500">
-                  可承載至第 102 列之交易清單，排除空白儲存格與公式冗餘項。
-                </p>
-              </div>
-
-              {/* Search Box */}
-              <div className="relative w-full md:w-72">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
-                  <Search className="w-4 h-4" />
-                </span>
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="搜尋週次 (例如: 10W4)..."
-                  className="bg-slate-50 border border-slate-200 focus:border-teal-500 rounded-xl py-1.5 pl-9 pr-4 w-full text-xs text-slate-705 focus:outline-none focus:ring-1 focus:ring-teal-500/10 transition-all font-mono"
-                />
-              </div>
+            {/* Header Title Block */}
+            <div className="border-b border-slate-200 pb-4">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-1.5 font-display">
+                歷史全紀錄明細數據
+              </h3>
             </div>
 
             {/* Scrollable Container with Table - Font size set to matching text-xs, height doubled to 840px */}
@@ -692,7 +669,7 @@ export const PerformanceStats: React.FC = () => {
                   ) : (
                     <tr>
                       <td colSpan={6} className="px-5 py-10 text-center text-slate-400">
-                        查無任何匹配此搜尋字串 "{searchQuery}" 的週次記錄
+                        目前尚無週次記錄
                       </td>
                     </tr>
                   )}
@@ -704,7 +681,7 @@ export const PerformanceStats: React.FC = () => {
             <div className="flex items-center justify-between text-xs text-slate-500 px-1 pt-1">
               <span>* 單週損益 % 與 累積報酬 % 均以初始配置資金為計算基礎。</span>
               <span className="font-mono font-bold uppercase">
-                篩選出: {filteredRecords.length} / {records.length} 筆資料
+                共: {records.length} 筆資料
               </span>
             </div>
 
