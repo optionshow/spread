@@ -28,10 +28,10 @@ export const RiskCharts: React.FC<RiskChartsProps> = ({ params, results, strateg
   const [customCapital, setCustomCapital] = useState<number>(() => {
     try {
       const saved = localStorage.getItem("opt_spread_customCapital");
-      return saved ? parseInt(saved, 10) : 250000;
+      return saved ? parseInt(saved, 10) : 400000;
     } catch (e) {
       console.error("Failed to load custom capital from localStorage:", e);
-      return 250000;
+      return 400000;
     }
   });
 

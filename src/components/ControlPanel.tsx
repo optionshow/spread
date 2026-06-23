@@ -51,13 +51,13 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
   };
 
   return (
-    <div id="control-panel-root" className="bg-gradient-to-br from-slate-100 to-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-6 shadow-sm space-y-6">
+    <div id="control-panel-root" className="bg-white border border-sky-150 text-slate-900 rounded-2xl p-6 shadow-sm space-y-6">
       
       {/* Header section inside the panel */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-slate-200/80 pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-sky-100 pb-4">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 bg-slate-200/80 text-slate-800 rounded-lg">
-            <Settings2 className="w-5 h-5 text-slate-700" />
+          <div className="p-2 bg-sky-50 text-sky-800 rounded-lg">
+            <Settings2 className="w-5 h-5 text-sky-700" />
           </div>
           <div>
             <h3 className="text-base font-bold text-slate-900 tracking-wide font-display">
@@ -68,11 +68,6 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="text-[10px] bg-slate-200 text-slate-700 border border-slate-300 px-2.5 py-1 rounded-md font-mono font-bold uppercase tracking-wider">
-            2026 QUANT LAB
-          </span>
-        </div>
       </div>
 
       {/* Row 1: Strategy choice, Strike Diff, Target Return rate */}
@@ -81,26 +76,26 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
         {/* Step Direction: 選擇策略方向 */}
         <div className="md:col-span-4 space-y-3">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-bold uppercase text-slate-600 tracking-wider flex items-center gap-1.5">
+            <label className="text-xs font-bold uppercase text-slate-650 tracking-wider flex items-center gap-1.5">
               <Sliders className="w-4 h-4 text-slate-500" />
               選擇策略方向
             </label>
             <span className="text-[10px] text-slate-500 font-medium">影響線圖與損益模型</span>
           </div>
           
-          <div className="grid grid-cols-2 gap-2 bg-slate-200/60 p-1 rounded-xl border border-slate-250">
+          <div className="grid grid-cols-2 gap-2 bg-sky-50 p-1 rounded-xl border border-sky-100">
             <button
               id="strategy-bull"
               type="button"
               onClick={() => setStrategy("bull")}
               className={`py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 ${
                 strategy === "bull"
-                  ? "bg-rose-500 text-slate-950 shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-250"
+                  ? "bg-rose-500 text-white shadow-sm font-bold"
+                  : "text-slate-650 hover:text-slate-900 hover:bg-sky-100"
               }`}
             >
               <TrendingUp className="w-3.5 h-3.5" />
-              看多價差 (Bull Put)
+              看多價差
             </button>
             <button
               id="strategy-bear"
@@ -108,12 +103,12 @@ export const ControlPanel: React.FC<ControlPanelProps> = ({
               onClick={() => setStrategy("bear")}
               className={`py-2 px-3 rounded-lg text-xs font-semibold transition-all duration-200 flex items-center justify-center gap-1.5 ${
                 strategy === "bear"
-                  ? "bg-emerald-500 text-slate-950 shadow-sm font-bold"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-250"
+                  ? "bg-emerald-500 text-white shadow-sm font-bold"
+                  : "text-slate-650 hover:text-slate-900 hover:bg-sky-100"
               }`}
             >
               <TrendingUp className="w-3.5 h-3.5 rotate-90" />
-              看空價差 (Bear Call)
+              看空價差
             </button>
           </div>
         </div>

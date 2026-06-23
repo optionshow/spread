@@ -351,9 +351,9 @@ export const PerformanceStats: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             
             {/* Card 1: Account & Initial Capital */}
-            <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
+            <div className="bg-white border border-sky-150 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
               <div className="absolute right-0 top-0 translate-x-3 -translate-y-3 w-16 h-16 bg-blue-500/5 rounded-full blur-xl pointer-events-none"></div>
-              <div className="flex items-center justify-between text-slate-500">
+              <div className="flex items-center justify-between text-slate-550">
                 <span className="text-[10px] font-bold uppercase tracking-wider">初始配置資金 (樣本)</span>
                 <DollarSign className="w-4.5 h-4.5 text-blue-500" />
               </div>
@@ -362,15 +362,15 @@ export const PerformanceStats: React.FC = () => {
                   {formatTWD(summary.initialCapital)}
                 </span>
                 <span className="text-[10px] bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider inline-block">
-                  Account Base
+                  配置本金
                 </span>
               </div>
             </div>
 
             {/* Card 2: Cumulative Profit / Loss TWD - Red represents profit */}
-            <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
+            <div className="bg-white border border-sky-150 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
               <div className="absolute right-0 top-0 translate-x-3 -translate-y-3 w-16 h-16 bg-rose-500/5 rounded-full blur-xl pointer-events-none"></div>
-              <div className="flex items-center justify-between text-slate-500">
+              <div className="flex items-center justify-between text-slate-550">
                 <span className="text-[10px] font-bold uppercase tracking-wider">歷史累計淨損益</span>
                 <TrendingUp className="w-4.5 h-4.5 text-rose-500" />
               </div>
@@ -379,15 +379,15 @@ export const PerformanceStats: React.FC = () => {
                   {formatTWD(stats.totalAccumProfit)}
                 </span>
                 <span className="text-[10px] bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider inline-block">
-                  Net Earnings
+                  淨利得
                 </span>
               </div>
             </div>
 
             {/* Card 3: Return Rate % - Red represents profit */}
-            <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
+            <div className="bg-white border border-sky-150 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
               <div className="absolute right-0 top-0 translate-x-3 -translate-y-3 w-16 h-16 bg-rose-500/5 rounded-full blur-xl pointer-events-none"></div>
-              <div className="flex items-center justify-between text-slate-500">
+              <div className="flex items-center justify-between text-slate-550">
                 <span className="text-[10px] font-bold uppercase tracking-wider">歷史累計總報酬率</span>
                 <Percent className="w-4.5 h-4.5 text-rose-500" />
               </div>
@@ -396,15 +396,15 @@ export const PerformanceStats: React.FC = () => {
                   {formatPercent(stats.totalAccumPercent)}
                 </span>
                 <span className="text-[10px] bg-rose-50 text-rose-700 border border-rose-200 px-2 py-0.5 rounded font-bold uppercase tracking-wider inline-block">
-                  Total ROI
+                  總報酬
                 </span>
               </div>
             </div>
 
             {/* Card 4: Win rate & Active Weeks */}
-            <div className="bg-white border border-slate-200 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
+            <div className="bg-white border border-sky-150 p-5 rounded-2xl space-y-3 relative overflow-hidden shadow-sm">
               <div className="absolute right-0 top-0 translate-x-3 -translate-y-3 w-16 h-16 bg-amber-550/5 rounded-full blur-xl pointer-events-none"></div>
-              <div className="flex items-center justify-between text-slate-500">
+              <div className="flex items-center justify-between text-slate-550">
                 <span className="text-[10px] font-bold uppercase tracking-wider">單週勝率 / 承作週數</span>
                 <Calendar className="w-4.5 h-4.5 text-amber-500" />
               </div>
@@ -412,7 +412,7 @@ export const PerformanceStats: React.FC = () => {
                 <span className="text-xl font-mono font-extrabold text-slate-900 block">
                   {Math.round(stats.winRate)}%
                 </span>
-                <span className="text-[10px] text-slate-500 block font-medium">
+                <span className="text-[10px] text-slate-600 block font-medium">
                   共 {stats.totalWeeks} 交易週 | {stats.winWeeks}勝 {stats.lossWeeks}敗 {stats.flatWeeks}平
                 </span>
               </div>
@@ -424,8 +424,8 @@ export const PerformanceStats: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
             {/* Cumulative Profit Area Chart (left, 7cols) - White themed with Red stroke */}
-            <div className="p-5 lg:col-span-7 bg-white border border-slate-200 shadow-sm space-y-4 rounded-2xl">
-              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+            <div className="p-5 lg:col-span-7 bg-white border border-sky-150 shadow-sm space-y-4 rounded-2xl">
+              <div className="flex items-center justify-between border-b border-sky-100 pb-3">
                 <div className="space-y-0.5">
                   <h4 className="text-xs font-bold uppercase text-slate-800 tracking-wider flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4 text-rose-500" />
@@ -435,9 +435,6 @@ export const PerformanceStats: React.FC = () => {
                     模擬 $400,000 初始資金，累積總計盈利增加趨勢。
                   </p>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-50 px-2 py-0.5 border border-slate-200 rounded">
-                  Cumulative PnL Curve
-                </span>
               </div>
               
               <div className="h-[280px] w-full pt-2">
@@ -493,8 +490,8 @@ export const PerformanceStats: React.FC = () => {
             </div>
 
             {/* Weekly P/L Bar Chart (right, 5cols) - Red positive profit, green negative loss */}
-            <div className="p-5 lg:col-span-5 bg-white border border-slate-200 shadow-sm space-y-4 rounded-2xl">
-              <div className="flex items-center justify-between border-b border-slate-200 pb-3">
+            <div className="p-5 lg:col-span-5 bg-white border border-sky-150 shadow-sm space-y-4 rounded-2xl">
+              <div className="flex items-center justify-between border-b border-sky-100 pb-3">
                 <div className="space-y-0.5">
                   <h4 className="text-xs font-bold uppercase text-slate-800 tracking-wider flex items-center gap-1.5">
                     <Percent className="w-4 h-4 text-rose-500" />
@@ -504,9 +501,6 @@ export const PerformanceStats: React.FC = () => {
                     每一週次獨立之盈虧金額 (紅色為獲利，綠色為損益回吐)。
                   </p>
                 </div>
-                <span className="text-[10px] font-mono font-bold text-slate-400 bg-slate-50 px-2 py-0.5 border border-slate-200 rounded">
-                  Weekly Variance
-                </span>
               </div>
 
               <div className="h-[280px] w-full pt-2">
@@ -562,12 +556,12 @@ export const PerformanceStats: React.FC = () => {
           </div>
 
           {/* Deep Performance Report Indicators Card - White theme, Taiwanese red/green convention */}
-          <div className="bg-white border border-slate-200 p-6 rounded-2xl space-y-4 shadow-sm text-slate-700">
-            <h4 className="text-xs font-bold uppercase text-slate-800 tracking-wider border-b border-slate-200 pb-2.5">
-              進階量化交易分析 (Advanced Tactical Reporting)
+          <div className="bg-white border border-sky-150 p-6 rounded-2xl space-y-4 shadow-sm text-slate-700">
+            <h4 className="text-xs font-bold uppercase text-slate-800 tracking-wider border-b border-sky-100 pb-2.5">
+              進階量化交易分析
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-xs">
-              <div className="space-y-1 bg-slate-50 p-4 border border-slate-200 rounded-xl">
+              <div className="space-y-1 bg-sky-50/40 p-4 border border-sky-100 rounded-xl">
                 <span className="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">單週最大獲利</span>
                 <span className="font-mono text-rose-600 font-bold text-base block">
                   {formatTWD(stats.maxWeeklyProfit)}
@@ -576,7 +570,7 @@ export const PerformanceStats: React.FC = () => {
                   成立於週次: <b>{stats.maxWeeklyProfitWeek}</b>
                 </span>
               </div>
-              <div className="space-y-1 bg-slate-50 p-4 border border-slate-200 rounded-xl">
+              <div className="space-y-1 bg-sky-50/40 p-4 border border-sky-100 rounded-xl">
                 <span className="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">單週最大回撤</span>
                 <span className="font-mono text-emerald-600 font-bold text-base block">
                   {formatTWD(stats.maxWeeklyLoss)}
@@ -585,7 +579,7 @@ export const PerformanceStats: React.FC = () => {
                   成立於週次: <b>{stats.maxWeeklyLossWeek}</b>
                 </span>
               </div>
-              <div className="space-y-1 bg-slate-50 p-4 border border-slate-200 rounded-xl">
+              <div className="space-y-1 bg-sky-50/40 p-4 border border-sky-100 rounded-xl">
                 <span className="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">單週平均淨利 (期望值)</span>
                 <span className="font-mono text-rose-600 font-bold text-base block">
                   {formatTWD(stats.totalAccumProfit / stats.totalWeeks)}
@@ -594,7 +588,7 @@ export const PerformanceStats: React.FC = () => {
                   單週預估平均報酬亮點
                 </span>
               </div>
-              <div className="space-y-1 bg-slate-50 p-4 border border-slate-200 rounded-xl">
+              <div className="space-y-1 bg-sky-50/40 p-4 border border-sky-100 rounded-xl">
                 <span className="text-[10px] text-slate-500 font-bold block uppercase tracking-wider">交易獲利穩定係數 (盈虧比)</span>
                 <span className="font-mono text-indigo-600 font-bold text-base block">
                   {Math.abs(stats.winWeeks / (stats.lossWeeks || 1)).toFixed(2)}
@@ -607,19 +601,19 @@ export const PerformanceStats: React.FC = () => {
           </div>
 
           {/* Interactive Detailed Database Table - Double Font Size & White background */}
-          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm space-y-4 p-5">
+          <div className="bg-white border border-sky-150 rounded-2xl overflow-hidden shadow-sm space-y-4 p-5">
             
             {/* Header Title Block */}
-            <div className="border-b border-slate-200 pb-4">
+            <div className="border-b border-sky-100 pb-4">
               <h3 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-1.5 font-display">
                 歷史全紀錄明細數據
               </h3>
             </div>
 
             {/* Scrollable Container with Table - Font size set to matching text-xs, height doubled to 840px */}
-            <div className="overflow-x-auto max-h-[840px] rounded-xl border border-slate-200 shadow-inner custom-scrollbar">
+            <div className="overflow-x-auto max-h-[840px] rounded-xl border border-sky-150 shadow-inner custom-scrollbar">
               <table className="w-full text-xs text-left border-collapse font-sans">
-                <thead className="bg-slate-50 text-xs text-slate-500 uppercase tracking-wider border-b border-slate-200 sticky top-0 z-10 font-bold">
+                <thead className="bg-sky-50/50 text-xs text-slate-600 uppercase tracking-wider border-b border-sky-150 sticky top-0 z-10 font-bold">
                   <tr>
                     <th scope="col" className="px-4 py-2 border-r border-slate-200">序號</th>
                     <th scope="col" className="px-4 py-2 border-r border-slate-200">交易週次</th>
