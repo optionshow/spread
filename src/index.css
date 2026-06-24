@@ -34,6 +34,18 @@ body {
 .bento-card:hover {
   border-color: #bae6fd;
   box-shadow: 0 15px 35px -10px rgba(14, 165, 233, 0.15);
+  transform: translateY(-6px);
+}
+
+/* Control panel core container transition and hover lift-up */
+#control-panel-root {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#control-panel-root:hover {
+  border-color: #bae6fd;
+  box-shadow: 0 15px 35px -10px rgba(14, 165, 233, 0.12);
+  transform: translateY(-6px);
 }
 
 /* Custom scrollbars for Dark UI */

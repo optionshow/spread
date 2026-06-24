@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
   return (
-    <header className="border-b border-sky-100 bg-white/95 text-slate-800 backdrop-blur-md sticky top-0 z-40 transition-colors duration-200">
+    <header className="border-b border-sky-100 bg-white/95 text-slate-800 backdrop-blur-md relative lg:sticky top-0 z-40 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           
