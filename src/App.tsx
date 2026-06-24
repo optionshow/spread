@@ -6,6 +6,7 @@ import { RiskCharts } from "./components/RiskCharts";
 import { PerformanceStats } from "./components/PerformanceStats";
 import { InterfaceExplanation } from "./components/InterfaceExplanation";
 import { MindmapView } from "./components/MindmapView";
+import { TemperatureAdjustment } from "./components/TemperatureAdjustment";
 import { calculateSpreadMetrics } from "./utils/calculations";
 import { SpreadParams } from "./types";
 import { 
@@ -173,6 +174,11 @@ export default function App() {
                 </h2>
               </div>
               <RiskCharts params={params} results={results} strategy={strategy} />
+            </div>
+
+            {/* 多空溫度調整與容許值機制 */}
+            <div className="space-y-4 pt-4">
+              <TemperatureAdjustment />
             </div>
           </>
         ) : (
