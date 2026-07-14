@@ -135,40 +135,40 @@ export const TestChartView: React.FC = () => {
             <button
               onClick={() => handleZoom(1.2)}
               disabled={loading}
-              className="px-3 py-2 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100/80 rounded-xl text-xs font-bold text-indigo-700 transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
+              title="放大 ＋"
+              className="p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100/80 rounded-xl text-indigo-700 transition-all flex items-center justify-center active:scale-95 disabled:opacity-50"
             >
-              <ZoomIn className="w-4 h-4" />
-              放大 ＋
+              <ZoomIn className="w-4.5 h-4.5" />
             </button>
             <button
               onClick={() => handleZoom(0.8)}
               disabled={loading}
-              className="px-3 py-2 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100/80 rounded-xl text-xs font-bold text-indigo-700 transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
+              title="縮小 －"
+              className="p-2.5 bg-indigo-50 hover:bg-indigo-100 border border-indigo-100/80 rounded-xl text-indigo-700 transition-all flex items-center justify-center active:scale-95 disabled:opacity-50"
             >
-              <ZoomOut className="w-4 h-4" />
-              縮小 －
+              <ZoomOut className="w-4.5 h-4.5" />
             </button>
             <button
               onClick={handleResetZoom}
               disabled={loading}
-              className="px-3 py-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
+              title="重設縮放"
+              className="p-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl text-slate-700 transition-all flex items-center justify-center active:scale-95 disabled:opacity-50"
             >
-              <RotateCcw className="w-4 h-4" />
-              重設縮放
+              <RotateCcw className="w-4.5 h-4.5" />
             </button>
             <button
               onClick={fetchImage}
               disabled={loading}
-              className="px-3 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-xs font-bold text-emerald-700 transition-all flex items-center gap-1.5 active:scale-95 disabled:opacity-50"
+              title="手動刷新"
+              className="p-2.5 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-700 transition-all flex items-center justify-center active:scale-95 disabled:opacity-50"
             >
-              <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
-              手動刷新
+              <RefreshCw className={`w-4.5 h-4.5 ${loading ? "animate-spin" : ""}`} />
             </button>
           </div>
         </div>
 
         {/* Image Container with Scroll & Cropped limits */}
-        <div className="overflow-auto border border-sky-100 rounded-2xl max-h-[70vh] bg-slate-50 relative p-4 flex items-start justify-center shadow-inner min-h-[300px]">
+        <div className="overflow-auto border border-sky-100 rounded-2xl max-h-[140vh] bg-slate-50 relative p-4 flex items-start justify-center shadow-inner min-h-[600px]">
           {loading && !imgSrc && (
             <div className="absolute inset-0 bg-white/75 backdrop-blur-sm flex flex-col items-center justify-center gap-2 z-10">
               <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
