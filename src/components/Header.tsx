@@ -1,12 +1,14 @@
 import React from "react";
-import { ShieldCheck, TrendingUp, HelpCircle, BookOpen, Calculator, Network } from "lucide-react";
+import { ShieldCheck, TrendingUp, HelpCircle, BookOpen, Calculator, Network, Image } from "lucide-react";
 
 interface HeaderProps {
   activeTab: "main" | "stats";
   setActiveTab: (tab: "main" | "stats") => void;
+  currentView: "app" | "guide" | "mindmap" | "test_chart";
+  setCurrentView: (view: "app" | "guide" | "mindmap" | "test_chart") => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
+export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, currentView, setCurrentView }) => {
   return (
     <header className="border-b border-sky-100 bg-white/95 text-slate-800 backdrop-blur-md relative lg:sticky top-0 z-40 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -30,33 +32,62 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
           <div className="flex items-center gap-2.5 self-start sm:self-center">
             <button
               onClick={() => {
-                window.open(`${window.location.origin}${window.location.pathname}?page=guide`, "_blank");
+                setCurrentView(currentView === "guide" ? "app" : "guide");
               }}
-              className="px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                currentView === "guide"
+                  ? "bg-sky-50 border-sky-300 text-sky-700 font-extrabold shadow-sky-500/5"
+                  : "bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
+              }`}
             >
-              <HelpCircle className="w-4 h-4 text-sky-500" />
+              <HelpCircle className={`w-4 h-4 ${currentView === "guide" ? "text-sky-600 animate-pulse" : "text-sky-500"}`} />
               介面解說
             </button>
 
             <button
               onClick={() => {
-                window.open(`${window.location.origin}${window.location.pathname}?page=mindmap`, "_blank");
+                setCurrentView(currentView === "mindmap" ? "app" : "mindmap");
               }}
-              className="px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                currentView === "mindmap"
+                  ? "bg-emerald-50 border-emerald-300 text-emerald-700 font-extrabold shadow-emerald-500/5"
+                  : "bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
+              }`}
             >
-              <Network className="w-4 h-4 text-emerald-600" />
+              <Network className={`w-4 h-4 ${currentView === "mindmap" ? "text-emerald-600 animate-pulse" : "text-emerald-600"}`} />
               心智圖
             </button>
 
             <button
-              onClick={() => setActiveTab(activeTab === "main" ? "stats" : "main")}
+              onClick={() => {
+                setCurrentView(currentView === "test_chart" ? "app" : "test_chart");
+              }}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
-                activeTab === "stats"
+                currentView === "test_chart"
+                  ? "bg-indigo-50 border-indigo-300 text-indigo-700 font-extrabold shadow-indigo-500/5"
+                  : "bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
+              }`}
+            >
+              <Image className={`w-4 h-4 ${currentView === "test_chart" ? "text-indigo-600 animate-pulse" : "text-indigo-600"}`} />
+              測試圖
+            </button>
+
+            <button
+              onClick={() => {
+                if (currentView !== "app") {
+                  setCurrentView("app");
+                  setActiveTab("main");
+                } else {
+                  setActiveTab(activeTab === "main" ? "stats" : "main");
+                }
+              }}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 border shadow-sm ${
+                activeTab === "stats" || currentView !== "app"
                   ? "bg-teal-500 text-white border-teal-400 font-bold shadow-teal-500/15 hover:bg-teal-600"
                   : "bg-white text-slate-750 border-sky-200 hover:bg-sky-50"
               }`}
             >
-              {activeTab === "stats" ? (
+              {activeTab === "stats" || currentView !== "app" ? (
                 <>
                   <Calculator className="w-4 h-4 text-white" />
                   返回試算評估

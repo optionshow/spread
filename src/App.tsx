@@ -7,6 +7,7 @@ import { PerformanceStats } from "./components/PerformanceStats";
 import { InterfaceExplanation } from "./components/InterfaceExplanation";
 import { MindmapView } from "./components/MindmapView";
 import { TemperatureAdjustment } from "./components/TemperatureAdjustment";
+import { TestChartView } from "./components/TestChartView";
 import { calculateSpreadMetrics } from "./utils/calculations";
 import { SpreadParams } from "./types";
 import { 
@@ -19,9 +20,13 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<"main" | "stats">("main");
 
   // Read route query parameter to trigger sub-view
-  const [currentView] = useState(() => {
+  const [currentView, setCurrentView] = useState<"app" | "guide" | "mindmap" | "test_chart">(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("page") || "app";
+    const page = urlParams.get("page");
+    if (page === "guide" || page === "mindmap" || page === "test_chart") {
+      return page;
+    }
+    return "app";
   });
 
   // Main selected parameters loaded from localStorage if available
@@ -90,22 +95,26 @@ export default function App() {
     return `${rounded.toFixed(1)}%`;
   };
 
-  if (currentView === "guide") {
-    return <InterfaceExplanation />;
-  }
-
-  if (currentView === "mindmap") {
-    return <MindmapView />;
-  }
-
   return (
     <div className="min-h-screen bg-[#f0f9ff] text-slate-800 font-sans antialiased flex flex-col selection:bg-teal-500/30 selection:text-teal-950 transition-colors duration-200">
-      <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+      <Header 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        currentView={currentView}
+        setCurrentView={setCurrentView}
+      />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
-        
-        {activeTab === "main" ? (
+        {currentView === "guide" ? (
+          <InterfaceExplanation />
+        ) : currentView === "mindmap" ? (
+          <MindmapView />
+        ) : currentView === "test_chart" ? (
+          <TestChartView />
+        ) : (
           <>
+            {activeTab === "main" ? (
+              <>
             {/* Top Feature: Strategy Guide Banner */}
             <StrategyGuide />
 
@@ -183,6 +192,8 @@ export default function App() {
           </>
         ) : (
           <PerformanceStats />
+        )}
+          </>
         )}
 
       </main>
